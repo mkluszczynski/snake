@@ -1,6 +1,6 @@
-import {GameField} from "../gameField/gameField.class";
+import {GameField} from "./gameField.class";
 import chalk from "chalk";
-import {GameFieldState} from "../gameField/enums/gameFieldState.enum";
+import {GameFieldState} from "./enums/gameFieldState.enum";
 import {Snake} from "../snake/snake.class";
 
 export class GameRenderer {

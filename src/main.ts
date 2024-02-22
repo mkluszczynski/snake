@@ -1,8 +1,8 @@
 import {Snake} from "./snake/snake.class";
-import {GameManager} from "./gameManger/gameManager.class";
-import {GameRenderer} from "./gameRenderer/gameRenderer.class";
+import {GameManager} from "./game/gameManager.class";
+import {GameRenderer} from "./game/gameRenderer.class";
 import {sleep} from "./utils/sleep";
-import {InputManager} from "./inputManager/inputManager.class";
+import {InputManager} from "./input/inputManager.class";
 import {SnakeDirectionQueue} from "./snake/snakeDirectionQueue";
 
 const gameManager = new GameManager();

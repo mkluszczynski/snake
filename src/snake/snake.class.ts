@@ -2,7 +2,7 @@ import {SnakeDirection} from "./types/snakeDirection.type";
 import {SnakePosition} from "./types/snakePosition.type";
 import {SnakeBody} from "./snakeBody.class";
 import {SnakeDirectionQueue} from "./snakeDirectionQueue";
-import {GameManager} from "../gameManger/gameManager.class";
+import {GameManager} from "../game/gameManager.class";
 
 export class Snake {
     private body: SnakeBody[] = [];

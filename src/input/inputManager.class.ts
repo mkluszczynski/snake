@@ -1,5 +1,5 @@
 import * as process from "process";
-import {GameRenderer} from "../gameRenderer/gameRenderer.class";
+import {GameRenderer} from "../game/gameRenderer.class";
 import {SnakeDirectionQueue} from "../snake/snakeDirectionQueue";
 
 export class InputManager {
