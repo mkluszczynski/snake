@@ -21,8 +21,10 @@ export class Snake {
     }
 
     eat(): void {
-        this.gameManager.addScore(1)
-        this.body.push()
+        this.body.push(new SnakeBody(
+            this.body[this.body.length - 1].bodyPosition,
+            this.body[this.body.length - 1].nextBodyPosition
+        ))
     }
 
     move(): void {
