@@ -2,6 +2,7 @@ import {GameField} from "./gameField.class";
 import chalk from "chalk";
 import {GameFieldState} from "./enums/gameFieldState.enum";
 import {Snake} from "../snake/snake.class";
+import {FruitManager} from "../fruit/fruitManager.class";
 
 export class GameRenderer {
 
@@ -11,6 +12,7 @@ export class GameRenderer {
 
     constructor(
         private readonly snake: Snake,
+        private readonly fruitManager: FruitManager,
         weight: number,
         height: number
     ) {
@@ -22,7 +24,14 @@ export class GameRenderer {
 
     render(): void {
         console.clear()
+        this.clearMap()
         this.mapSnakePosition()
+        this.mapFruitPosition()
+        this.printMap()
+
+    }
+
+    private printMap(){
         for (let y: number = 0 ; y < this.weight; y++){
             let line = ""
             for (let x: number = 0 ; x < this.height ; x++){
@@ -33,6 +42,11 @@ export class GameRenderer {
 
                     case GameFieldState.SNAKE:
                         line += chalk.bgGreen(" ")
+                        break;
+
+                    case GameFieldState.FRUIT:
+                        line += this.fruitManager.currentFruit.color
+                        break;
                 }
             }
             console.log(line)
@@ -40,10 +54,14 @@ export class GameRenderer {
     }
 
     private mapSnakePosition(){
-        this.clearMap()
         this.snake.getCurrentPosition().forEach( ({x, y}) => {
             this.map[y][x].setState(GameFieldState.SNAKE)
         })
+    }
+
+    private mapFruitPosition() {
+        const {x, y} = this.fruitManager.currentFruit.getPosition()
+        this.map[y][x].setState(GameFieldState.FRUIT)
     }
 
     private clearMap(){

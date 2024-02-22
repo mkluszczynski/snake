@@ -1,4 +1,4 @@
-export type SnakePosition = {
+export type GamePosition = {
     x: number,
     y: number
 }

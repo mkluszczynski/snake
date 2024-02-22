@@ -1,24 +1,21 @@
-import {SnakePosition} from "./types/snakePosition.type";
+import {GamePosition} from "../game/types/gamePosition.type";
 
 export class SnakeBody {
 
-    bodyPosition: SnakePosition;
-    nextBodyPosition: SnakePosition;
+    bodyPosition: GamePosition;
+    nextBodyPosition: GamePosition;
 
     constructor(
-        startPosition: SnakePosition,
-        nextPosition: SnakePosition
+        startPosition: GamePosition,
+        nextPosition: GamePosition
     ) {
         this.bodyPosition = startPosition;
         this.nextBodyPosition = nextPosition;
     }
 
-    move(nextBodyPosition: SnakePosition): void {
-        console.log(nextBodyPosition)
+    move(nextBodyPosition: GamePosition): void {
         this.bodyPosition = this.nextBodyPosition;
         this.nextBodyPosition = nextBodyPosition;
-        // console.log(this.bodyPosition)
-        // console.log(this.nextBodyPosition)
     }
 
     getPosition(){

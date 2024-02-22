@@ -1,18 +1,18 @@
 import {SnakeDirection} from "./types/snakeDirection.type";
-import {SnakePosition} from "./types/snakePosition.type";
 import {SnakeBody} from "./snakeBody.class";
 import {SnakeDirectionQueue} from "./snakeDirectionQueue";
 import {GameManager} from "../game/gameManager.class";
+import {GamePosition} from "../game/types/gamePosition.type";
 
 export class Snake {
+
     private body: SnakeBody[] = [];
     private currentDirection: SnakeDirection;
-
 
     constructor(
         private readonly gameManager: GameManager,
         private readonly snakeMoveQueue: SnakeDirectionQueue,
-        startPosition: SnakePosition,
+        startPosition: GamePosition,
         startDirection: SnakeDirection
     ) {
         this.currentDirection = startDirection
@@ -33,7 +33,7 @@ export class Snake {
         }
     }
 
-    getCurrentPosition(): SnakePosition[] {
+    getCurrentPosition(): GamePosition[] {
         return this.body.map(element => element.bodyPosition)
     }
 
@@ -53,7 +53,7 @@ export class Snake {
         return this.body[0].getNextPosition()
     }
 
-    private getNextMove(): SnakePosition {
+    private getNextMove(): GamePosition {
         return {
             x: this.getNextHeadPosition().x + this.currentDirection.x,
             y: this.getNextHeadPosition().y + this.currentDirection.y
