@@ -1,7 +1,6 @@
-import {IGameField} from "./interfaces/gameField.interface";
 import {GameFieldState} from "./enums/gameFieldState.enum";
 
-export class GameField implements IGameField {
+export class GameField {
     currentState: GameFieldState = GameFieldState.EMPTY;
 
     setState(state:GameFieldState): void {

@@ -1,6 +1,4 @@
-import {IGameManager} from "./gameManger.interface";
-
-export class GameManager implements IGameManager{
+export class GameManager{
     isGameOver: boolean = false;
     score: number = 0;
 

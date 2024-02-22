@@ -1,24 +1,23 @@
-import {ISnake} from "./interfaces/snake.interface";
-import {ISnakeBody} from "./interfaces/snakeBody.interface";
 import {SnakeDirection} from "./types/snakeDirection.type";
-import {IGameManager} from "../gameManger/gameManger.interface";
 import {SnakePosition} from "./types/snakePosition.type";
 import {SnakeBody} from "./snakeBody.class";
-import {SnakeDirectionQueue} from "./SnakeDirectionQueue";
+import {SnakeDirectionQueue} from "./snakeDirectionQueue";
+import {GameManager} from "../gameManger/gameManager.class";
 
-export class Snake implements ISnake{
-    private body: ISnakeBody[] = [];
+export class Snake {
+    private body: SnakeBody[] = [];
     private currentDirection: SnakeDirection;
 
 
     constructor(
-        private readonly gameManager: IGameManager,
+        private readonly gameManager: GameManager,
         private readonly snakeMoveQueue: SnakeDirectionQueue,
         startPosition: SnakePosition,
         startDirection: SnakeDirection
     ) {
         this.currentDirection = startDirection
-        this.body.push(new SnakeBody(startPosition, ))
+        //TODO: Calculate next position
+        this.body.push(new SnakeBody(startPosition, {x: 1, y: 0}))
     }
 
     eat(): void {
@@ -29,14 +28,15 @@ export class Snake implements ISnake{
     move(): void {
         this.setDirection(this.snakeMoveQueue.getDirection())
         this.body[0].move(this.getNextMove())
-        for(let i = 1 ; i < this.body.length ; i++){
-            this.body[i].move(this.body[i-1].bodyPosition);
+        for (let i = 1; i < this.body.length; i++) {
+            this.body[i].move(this.body[i - 1].bodyPosition);
         }
     }
 
     getCurrentPosition(): SnakePosition[] {
         return this.body.map(element => element.bodyPosition)
     }
+
     setDirection(snakeDirection: SnakeDirection): void {
         this.currentDirection = snakeDirection;
     }
@@ -45,14 +45,18 @@ export class Snake implements ISnake{
         return this.currentDirection
     }
 
-    getHeadPosition(){
+    getHeadPosition() {
         return this.body[0].getPosition()
+    }
+
+    getNextHeadPosition(){
+        return this.body[0].getNextPosition()
     }
 
     private getNextMove(): SnakePosition {
         return {
-            x: this.getHeadPosition().x + this.currentDirection.x,
-            y: this.getHeadPosition().y + this.currentDirection.y
+            x: this.getNextHeadPosition().x + this.currentDirection.x,
+            y: this.getNextHeadPosition().y + this.currentDirection.y
         }
     }
 

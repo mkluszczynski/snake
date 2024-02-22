@@ -1,18 +1,16 @@
-import {IGameRenderer} from "./interfaces/gameRenderer.interface";
-import {ISnake} from "../snake/interfaces/snake.interface";
-import {IGameField} from "../gameField/interfaces/gameField.interface";
 import {GameField} from "../gameField/gameField.class";
 import chalk from "chalk";
 import {GameFieldState} from "../gameField/enums/gameFieldState.enum";
+import {Snake} from "../snake/snake.class";
 
-export class GameRenderer implements IGameRenderer {
+export class GameRenderer {
 
-    private map: IGameField[][]
+    private map: GameField[][]
     private weight: number
     private height: number
 
     constructor(
-        private readonly snake: ISnake,
+        private readonly snake: Snake,
         weight: number,
         height: number
     ) {
@@ -43,8 +41,6 @@ export class GameRenderer implements IGameRenderer {
 
     private mapSnakePosition(){
         this.clearMap()
-        console.log(this.snake.getCurrentPosition())
-        console.log(this.snake.getDirection())
         this.snake.getCurrentPosition().forEach( ({x, y}) => {
             this.map[y][x].setState(GameFieldState.SNAKE)
         })

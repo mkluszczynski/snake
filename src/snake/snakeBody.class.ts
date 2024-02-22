@@ -1,7 +1,6 @@
-import {ISnakeBody} from "./interfaces/snakeBody.interface";
 import {SnakePosition} from "./types/snakePosition.type";
 
-export class SnakeBody implements ISnakeBody{
+export class SnakeBody {
 
     bodyPosition: SnakePosition;
     nextBodyPosition: SnakePosition;
@@ -15,14 +14,19 @@ export class SnakeBody implements ISnakeBody{
     }
 
     move(nextBodyPosition: SnakePosition): void {
+        console.log(nextBodyPosition)
         this.bodyPosition = this.nextBodyPosition;
-        this.nextBodyPosition = nextBodyPosition
-        console.log(this.bodyPosition)
-        console.log(this.nextBodyPosition)
+        this.nextBodyPosition = nextBodyPosition;
+        // console.log(this.bodyPosition)
+        // console.log(this.nextBodyPosition)
     }
 
     getPosition(){
         return this.bodyPosition
+    }
+
+    getNextPosition(){
+        return this.nextBodyPosition
     }
 
 }

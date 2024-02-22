@@ -3,7 +3,7 @@ import {GameManager} from "./gameManger/gameManager.class";
 import {GameRenderer} from "./gameRenderer/gameRenderer.class";
 import {sleep} from "./utils/sleep";
 import {InputManager} from "./inputManager/inputManager.class";
-import {SnakeDirectionQueue} from "./snake/SnakeDirectionQueue";
+import {SnakeDirectionQueue} from "./snake/snakeDirectionQueue";
 
 const gameManager = new GameManager();
 const snakeDirectionQueue = new SnakeDirectionQueue({x: 1, y: 0})
@@ -15,9 +15,8 @@ async function main(){
     inputManager.read()
     while (!gameManager.shouldGameOver()){
         snake.move()
-        await sleep(1000)
         gameRenderer.render()
+        await sleep(100)
     }
 }
 main();
-

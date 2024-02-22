@@ -13,6 +13,7 @@ export class SnakeDirectionQueue {
     handleDown(): void {
         if(this.directionQueue.y === -1) return;
         this.directionQueue = {x: 0, y: 1}
+        console.log("down")
     }
 
     handleLeft(): void {
@@ -23,6 +24,7 @@ export class SnakeDirectionQueue {
     handleRight(): void {
         if(this.directionQueue.x === -1) return;
         this.directionQueue = {x: 1, y: 0}
+        console.log("right")
     }
 
     handleUp(): void {
