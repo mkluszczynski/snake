@@ -7,15 +7,10 @@ import { SnakeDirectionQueue } from "./snake/snakeDirectionQueue";
 import { FruitManager } from "./fruit/fruitManager.class";
 import { SnakeCollision } from "./snake/snakeCollisionManager";
 
-const gameManager = new GameManager();
 const snakeDirectionQueue = new SnakeDirectionQueue({ x: 1, y: 0 });
-const snake = new Snake(
-  gameManager,
-  snakeDirectionQueue,
-  { x: 0, y: 0 },
-  { x: 1, y: 0 },
-);
+const snake = new Snake(snakeDirectionQueue, { x: 0, y: 0 }, { x: 1, y: 0 });
 const fruitManager = new FruitManager(snake);
+const gameManager = new GameManager(snake, fruitManager);
 const gameRenderer = new GameRenderer(
   snake,
   fruitManager,
@@ -36,5 +31,6 @@ async function main() {
     await sleep(100);
     snake.move();
   }
+  process.exit();
 }
 main();

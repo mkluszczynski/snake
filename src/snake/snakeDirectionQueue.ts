@@ -1,6 +1,7 @@
 import { SnakeDirection } from "./types/snakeDirection.type";
 
 export class SnakeDirectionQueue {
+  //TODO: Refactor directionQueue bug
   constructor(private directionQueue: SnakeDirection) {}
 
   getDirection() {
