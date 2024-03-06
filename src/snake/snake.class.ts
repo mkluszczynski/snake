@@ -1,65 +1,68 @@
-import {SnakeDirection} from "./types/snakeDirection.type";
-import {SnakeBody} from "./snakeBody.class";
-import {SnakeDirectionQueue} from "./snakeDirectionQueue";
-import {GameManager} from "../game/gameManager.class";
-import {GamePosition} from "../game/types/gamePosition.type";
+import { SnakeDirection } from "./types/snakeDirection.type";
+import { SnakeBody } from "./snakeBody.class";
+import { SnakeDirectionQueue } from "./snakeDirectionQueue";
+import { GameManager } from "../game/gameManager.class";
+import { GamePosition } from "../game/types/gamePosition.type";
+import chalk from "chalk";
 
 export class Snake {
+  private body: SnakeBody[] = [];
+  private currentDirection: SnakeDirection;
 
-    private body: SnakeBody[] = [];
-    private currentDirection: SnakeDirection;
+  color: string = chalk.bgGreen(" ");
 
-    constructor(
-        private readonly gameManager: GameManager,
-        private readonly snakeMoveQueue: SnakeDirectionQueue,
-        startPosition: GamePosition,
-        startDirection: SnakeDirection
-    ) {
-        this.currentDirection = startDirection
-        //TODO: Calculate next position
-        this.body.push(new SnakeBody(startPosition, {x: 1, y: 0}))
+  constructor(
+    private readonly gameManager: GameManager,
+    private readonly snakeMoveQueue: SnakeDirectionQueue,
+    startPosition: GamePosition,
+    startDirection: SnakeDirection,
+  ) {
+    this.currentDirection = startDirection;
+    //TODO: Calculate next position
+    this.body.push(new SnakeBody(startPosition, { x: 1, y: 0 }));
+  }
+
+  eat(): void {
+    this.body.push(
+      new SnakeBody(
+        this.body[this.body.length - 1].bodyPosition,
+        this.body[this.body.length - 1].nextBodyPosition,
+      ),
+    );
+  }
+
+  move(): void {
+    this.setDirection(this.snakeMoveQueue.getDirection());
+    this.body[0].move(this.getNextMove());
+    for (let i = 1; i < this.body.length; i++) {
+      this.body[i].move(this.body[i - 1].bodyPosition);
     }
+  }
 
-    eat(): void {
-        this.body.push(new SnakeBody(
-            this.body[this.body.length - 1].bodyPosition,
-            this.body[this.body.length - 1].nextBodyPosition
-        ))
-    }
+  getCurrentPosition(): GamePosition[] {
+    return this.body.map((element) => element.bodyPosition);
+  }
 
-    move(): void {
-        this.setDirection(this.snakeMoveQueue.getDirection())
-        this.body[0].move(this.getNextMove())
-        for (let i = 1; i < this.body.length; i++) {
-            this.body[i].move(this.body[i - 1].bodyPosition);
-        }
-    }
+  setDirection(snakeDirection: SnakeDirection): void {
+    this.currentDirection = snakeDirection;
+  }
 
-    getCurrentPosition(): GamePosition[] {
-        return this.body.map(element => element.bodyPosition)
-    }
+  getDirection() {
+    return this.currentDirection;
+  }
 
-    setDirection(snakeDirection: SnakeDirection): void {
-        this.currentDirection = snakeDirection;
-    }
+  getHeadPosition() {
+    return this.body[0].getPosition();
+  }
 
-    getDirection() {
-        return this.currentDirection
-    }
+  getNextHeadPosition() {
+    return this.body[0].getNextPosition();
+  }
 
-    getHeadPosition() {
-        return this.body[0].getPosition()
-    }
-
-    getNextHeadPosition(){
-        return this.body[0].getNextPosition()
-    }
-
-    private getNextMove(): GamePosition {
-        return {
-            x: this.getNextHeadPosition().x + this.currentDirection.x,
-            y: this.getNextHeadPosition().y + this.currentDirection.y
-        }
-    }
-
+  private getNextMove(): GamePosition {
+    return {
+      x: this.getNextHeadPosition().x + this.currentDirection.x,
+      y: this.getNextHeadPosition().y + this.currentDirection.y,
+    };
+  }
 }
