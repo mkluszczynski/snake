@@ -21,16 +21,25 @@ const inputManager: InputManager = new InputManager(
   snakeDirectionQueue,
   gameRenderer,
 );
-const collisionManager = new SnakeCollision(snake, fruitManager, gameManager);
+const collisionManager = new SnakeCollision(
+  snake,
+  fruitManager,
+  gameManager,
+  gameRenderer,
+);
 
 async function main() {
   inputManager.read();
   while (!gameManager.shouldGameOver()) {
     collisionManager.checkCollision();
+    if (gameManager.shouldGameOver()) break;
+
     gameRenderer.render();
     await sleep(100);
     snake.move();
   }
+  console.clear();
+  console.log("Score: ", gameManager.score);
   process.exit();
 }
 main();

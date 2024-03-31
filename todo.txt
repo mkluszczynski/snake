@@ -1,0 +1,4 @@
+game over screen - done
+game over on out of the map - done
+highest score
+refactor imput

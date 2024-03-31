@@ -17,7 +17,6 @@ export class GameManager {
   }
 
   onCollisionOccurred() {
-    console.log("collistion");
     this.isGameOver = true;
   }
 

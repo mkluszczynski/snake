@@ -7,19 +7,27 @@ import { sleep } from "../utils/sleep";
 
 export class GameRenderer {
   private map: GameField[][];
-  private weight: number;
+  private width: number;
   private height: number;
 
   constructor(
     private readonly snake: Snake,
     private readonly fruitManager: FruitManager,
-    weight: number,
+    width: number,
     height: number,
   ) {
-    this.weight = weight;
+    this.width = width;
     this.height = height;
     this.map = [];
     this.initMap();
+  }
+
+  getWidth() {
+    return this.width;
+  }
+
+  getHeight() {
+    return this.height;
   }
 
   render(): void {
@@ -31,7 +39,7 @@ export class GameRenderer {
   }
 
   private printMap() {
-    for (let y: number = 0; y < this.weight; y++) {
+    for (let y: number = 0; y < this.width; y++) {
       let line = "";
       for (let x: number = 0; x < this.height; x++) {
         line += this.map[y][x].color;
@@ -63,7 +71,7 @@ export class GameRenderer {
   }
 
   private initMap(): void {
-    for (let y: number = 0; y < this.weight; y++) {
+    for (let y: number = 0; y < this.width; y++) {
       this.map.push([]);
       for (let x: number = 0; x < this.height; x++) {
         this.map[y].push(new GameField());

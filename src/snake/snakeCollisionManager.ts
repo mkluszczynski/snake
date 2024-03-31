@@ -1,17 +1,21 @@
 import { FruitManager } from "../fruit/fruitManager.class";
 import { Snake } from "./snake.class";
 import { GameManager } from "../game/gameManager.class";
+import { GameRenderer } from "../game/gameRenderer.class";
+import { sleep } from "../utils/sleep";
 
 export class SnakeCollision {
   constructor(
     private readonly snake: Snake,
     private readonly fruitManager: FruitManager,
     private readonly gameManager: GameManager,
+    private readonly gameRenderer: GameRenderer,
   ) {}
 
   checkCollision() {
     if (this.isSnakeOnFruit()) this.gameManager.addScore();
     if (this.isSnakeOnSnake()) this.gameManager.onCollisionOccurred();
+    if (this.isSnakeOutOfTheMap()) this.gameManager.onCollisionOccurred();
   }
 
   isSnakeOnFruit(): boolean {
@@ -35,9 +39,25 @@ export class SnakeCollision {
     );
 
     if (index === -1) return false;
-    console.log(snakePosition);
-    console.log(snakeBodyPosition);
-    process.exit();
     return true;
+  }
+
+  isSnakeOutOfTheMap(): boolean {
+    const snakeHeadPosition = this.snake.getHeadPosition();
+    if (
+      snakeHeadPosition.x < 0 ||
+      snakeHeadPosition.x > this.gameRenderer.getHeight()
+    ) {
+      return true;
+    }
+
+    if (
+      snakeHeadPosition.y < 0 ||
+      snakeHeadPosition.y > this.gameRenderer.getWidth()
+    ) {
+      return true;
+    }
+
+    return false;
   }
 }
