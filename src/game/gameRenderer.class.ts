@@ -1,9 +1,9 @@
-import { GameField } from "./gameField.class";
-import chalk from "chalk";
-import { GameFieldState } from "./enums/gameFieldState.enum";
-import { Snake } from "../snake/snake.class";
-import { FruitManager } from "../fruit/fruitManager.class";
-import { sleep } from "../utils/sleep";
+import {GameField} from "./gameField.class";
+import {GameFieldState} from "./enums/gameFieldState.enum";
+import {Snake} from "../snake/snake.class";
+import {FruitManager} from "../fruit/fruitManager.class";
+import process from "process";
+import {ScoreManager} from "../score/scoreManager.class";
 
 export class GameRenderer {
   private map: GameField[][];
@@ -13,6 +13,7 @@ export class GameRenderer {
   constructor(
     private readonly snake: Snake,
     private readonly fruitManager: FruitManager,
+    private readonly scoreManager: ScoreManager,
     width: number,
     height: number,
   ) {
@@ -36,6 +37,7 @@ export class GameRenderer {
     this.mapSnakePosition();
     this.mapFruitPosition();
     this.printMap();
+    process.stdout.write(`Score: ${this.scoreManager.score}`)
   }
 
   private printMap() {

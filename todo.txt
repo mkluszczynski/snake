@@ -1,6 +1,6 @@
 game over screen - done
 game over on out of the map - done
-add personal height score
+add personal height score - done
 add current score to while playing
 snake should get faster after every score
 refactor directionQueue
