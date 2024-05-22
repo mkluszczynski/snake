@@ -7,11 +7,13 @@ import {SnakeDirectionQueueClass} from "./snake/snakeDirectionQueue.class";
 import {FruitManager} from "./fruit/fruitManager.class";
 import {SnakeCollision} from "./snake/snakeCollisionManager.class";
 import {FRAME_TIME, WINDOW_HEIGHT, WINDOW_WIDTH} from "./utils/consts";
+import {ScoreManager} from "./score/scoreManager.class";
 
 const snakeDirectionQueue = new SnakeDirectionQueueClass({ x: 1, y: 0 });
 const snake = new Snake(snakeDirectionQueue, { x: 0, y: 0 }, { x: 1, y: 0 });
 const fruitManager = new FruitManager(snake);
-const gameManager = new GameManager(snake, fruitManager);
+const scoreManager = new ScoreManager();
+const gameManager = new GameManager(snake, fruitManager, scoreManager);
 const gameRenderer = new GameRenderer(
   snake,
   fruitManager,
@@ -40,7 +42,9 @@ async function main() {
     snake.move();
   }
   console.clear();
-  console.log("Score: ", gameManager.score);
+  if(scoreManager.shouldSave()) scoreManager.saveScore();
+  console.log("Highest score: ", scoreManager.getSavedScore())
+  console.log("Score: ", scoreManager.score);
   process.exit();
 }
 main();
