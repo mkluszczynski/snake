@@ -1,6 +1,6 @@
-import { SnakeDirection } from "./types/snakeDirection.type";
+import {SnakeDirection} from "./types/snakeDirection.type";
 
-export class SnakeDirectionQueue {
+export class SnakeDirectionQueueClass {
   //TODO: Refactor directionQueue bug
   constructor(private directionQueue: SnakeDirection) {}
 

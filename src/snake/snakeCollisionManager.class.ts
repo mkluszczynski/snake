@@ -1,8 +1,7 @@
-import { FruitManager } from "../fruit/fruitManager.class";
-import { Snake } from "./snake.class";
-import { GameManager } from "../game/gameManager.class";
-import { GameRenderer } from "../game/gameRenderer.class";
-import { sleep } from "../utils/sleep";
+import {FruitManager} from "../fruit/fruitManager.class";
+import {Snake} from "./snake.class";
+import {GameManager} from "../game/gameManager.class";
+import {GameRenderer} from "../game/gameRenderer.class";
 
 export class SnakeCollision {
   constructor(
@@ -46,14 +45,14 @@ export class SnakeCollision {
     const snakeHeadPosition = this.snake.getHeadPosition();
     if (
       snakeHeadPosition.x < 0 ||
-      snakeHeadPosition.x > this.gameRenderer.getHeight()
+      snakeHeadPosition.x >= this.gameRenderer.getHeight()
     ) {
       return true;
     }
 
     if (
       snakeHeadPosition.y < 0 ||
-      snakeHeadPosition.y > this.gameRenderer.getWidth()
+      snakeHeadPosition.y >= this.gameRenderer.getWidth()
     ) {
       return true;
     }

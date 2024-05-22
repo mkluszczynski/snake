@@ -1,7 +1,7 @@
-import { SnakeDirection } from "./types/snakeDirection.type";
-import { SnakeBody } from "./snakeBody.class";
-import { SnakeDirectionQueue } from "./snakeDirectionQueue";
-import { GamePosition } from "../game/types/gamePosition.type";
+import {SnakeDirection} from "./types/snakeDirection.type";
+import {SnakeBody} from "./snakeBody.class";
+import {SnakeDirectionQueueClass} from "./snakeDirectionQueue.class";
+import {GamePosition} from "../game/types/gamePosition.type";
 import chalk from "chalk";
 
 export class Snake {
@@ -11,7 +11,7 @@ export class Snake {
   color: string = chalk.bgGreen(" ");
 
   constructor(
-    private readonly snakeMoveQueue: SnakeDirectionQueue,
+    private readonly snakeMoveQueue: SnakeDirectionQueueClass,
     startPosition: GamePosition,
     startDirection: SnakeDirection,
   ) {
