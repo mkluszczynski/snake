@@ -1,4 +1,6 @@
 game over screen - done
 game over on out of the map - done
-highest score
-refactor imput
+add personal height score
+snake should get faster after every score
+refactor directionQueue
+fix spawning fruit on snake bug
