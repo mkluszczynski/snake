@@ -41,9 +41,9 @@ export class FruitManager {
 
     private isPositionValid(position: GamePosition): boolean {
         const isOnSnake = this.snake.getHeadPosition() === position;
-        const isOnSnakeBody = !this.snake.getCurrentPosition().includes(position);
+        const isOnSnakeBody = this.snake.getCurrentPosition().includes(position);
 
-        return isOnSnake && isOnSnakeBody;
+        return !isOnSnake && !isOnSnakeBody;
     }
 
 }
