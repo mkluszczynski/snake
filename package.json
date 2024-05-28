@@ -1,6 +1,6 @@
 {
   "name": "@mkluszczynski/snake",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Snake game in terminal",
   "main": "dist/bin.js",
   "bin": {
@@ -19,7 +19,7 @@
   "keywords": [],
   "author": "Mateusz Kluszczyński",
   "license": "ISC",
-  "homepage": "https://github.com/mkluszczynski/snake-ts",
+  "homepage": "https://github.com/mkluszczynski/snake",
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
