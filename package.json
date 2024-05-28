@@ -7,7 +7,7 @@
     "snake": "dist/bin.js"
   },
   "scripts": {
-    "play": "node dist/bin.js",
+    "play": "dist/bin.js",
     "start": "tsc && node ./build/main",
     "dev": "ts-node src/main",
     "build": "rollup --config rollup.config.js --configPlugin typescript --compact --silent && chmod +x dist/bin.js",
