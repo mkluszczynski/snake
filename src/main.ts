@@ -9,6 +9,7 @@ import { SnakeCollision } from "./snake/snakeCollisionManager.class";
 import { FRAME_TIME, WINDOW_HEIGHT, WINDOW_WIDTH } from "./utils/consts";
 import { ScoreManager } from "./score/scoreManager.class";
 import * as process from "process";
+import { printGameOver } from "./utils/ascii";
 
 const snakeDirectionQueue = new SnakeDirectionQueue({ x: 1, y: 0 });
 const snake = new Snake(snakeDirectionQueue, { x: 0, y: 0 }, { x: 1, y: 0 });
@@ -46,8 +47,9 @@ async function main() {
   }
   console.clear();
   if (scoreManager.shouldSave()) scoreManager.saveScore();
+  printGameOver();
   console.log("Highest score: ", scoreManager.getSavedScore());
-  console.log("Score: ", scoreManager.score);
+  console.log("Your Score: ", scoreManager.score);
   process.exit();
 }
 main();
