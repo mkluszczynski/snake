@@ -1,11 +1,11 @@
 import * as process from "process";
 import {GameRenderer} from "../game/gameRenderer.class";
-import {SnakeDirectionQueueClass} from "../snake/snakeDirectionQueue.class";
+import {SnakeDirectionQueue} from "../snake/snakeDirectionQueue.class";
 
 export class InputManager {
 
     constructor(
-        private readonly snakeDirectionQueue : SnakeDirectionQueueClass,
+        private readonly snakeDirectionQueue : SnakeDirectionQueue,
         private readonly gameRenderer: GameRenderer
     ) {}
 

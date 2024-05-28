@@ -1,6 +1,6 @@
 import {SnakeDirection} from "./types/snakeDirection.type";
 import {SnakeBody} from "./snakeBody.class";
-import {SnakeDirectionQueueClass} from "./snakeDirectionQueue.class";
+import {SnakeDirectionQueue} from "./snakeDirectionQueue.class";
 import {GamePosition} from "../game/types/gamePosition.type";
 import chalk from "chalk";
 
@@ -11,7 +11,7 @@ export class Snake {
   color: string = chalk.bgGreen(" ");
 
   constructor(
-    private readonly snakeMoveQueue: SnakeDirectionQueueClass,
+    private readonly snakeDirectionQueue: SnakeDirectionQueue,
     startPosition: GamePosition,
     startDirection: SnakeDirection,
   ) {
@@ -30,7 +30,9 @@ export class Snake {
   }
 
   move(): void {
-    this.setDirection(this.snakeMoveQueue.getDirection());
+    this.setDirection(this.snakeDirectionQueue.getDirection());
+    this.snakeDirectionQueue.clearQueue();
+
     this.body[0].move(this.getNextMove());
     for (let i = 1; i < this.body.length; i++) {
       this.body[i].move(this.body[i - 1].bodyPosition);
