@@ -13,7 +13,7 @@ export class ScoreManager {
   }
 
   saveScore(): void {
-    fs.writeFileSync(SAVE_PATH, this._score.toString(), { flag: "w" });
+    fs.writeFileSync(SAVE_PATH, this._score.toString());
   }
 
   getSavedScore(): number {
