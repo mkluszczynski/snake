@@ -13,10 +13,12 @@ export class ScoreManager {
   }
 
   saveScore(): void {
-    fs.writeFileSync(SAVE_PATH, this._score.toString());
+    fs.writeFileSync(SAVE_PATH, this._score.toString(), { flag: "w" });
   }
 
   getSavedScore(): number {
+    if (!this.doesSaveExist()) return 0;
+
     let savedScore: number = 0;
     try {
       savedScore = +fs.readFileSync(SAVE_PATH, { encoding: "utf-8" });
@@ -24,6 +26,10 @@ export class ScoreManager {
       console.error("Error while reading save file...", err);
     }
     return savedScore;
+  }
+
+  doesSaveExist(): boolean {
+    return fs.existsSync(SAVE_PATH);
   }
 
   shouldSave(): boolean {
