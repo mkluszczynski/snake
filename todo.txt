@@ -4,4 +4,4 @@ add personal height score - done
 add current score to while playing - done
 snake should get faster after every score - done
 refactor directionQueue - done
-fix spawning fruit on snake bug
+fix spawning fruit on snake bug - done

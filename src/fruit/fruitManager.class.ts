@@ -3,6 +3,7 @@ import {Fruit} from "./fruit.class";
 import {FruitMeta} from "./types/fruitMeta.type";
 import chalk from "chalk";
 import {GamePosition} from "../game/types/gamePosition.type";
+import {WINDOW_HEIGHT, WINDOW_WIDTH} from "../utils/consts";
 
 export class FruitManager {
 
@@ -20,10 +21,10 @@ export class FruitManager {
 
     spawnFruit(){
         do{
-            var x = Math.floor(Math.random() * 30);
-            var y = Math.floor(Math.random() * 20);
+            var x = Math.floor(Math.random() * WINDOW_WIDTH);
+            var y = Math.floor(Math.random() * WINDOW_HEIGHT);
         }
-        while (this.isPositionValid({x, y}))
+        while (!this.isPositionValid({x, y}))
 
         const fruitMeta = this.getRandomFruitMeta()
         this.currentFruit = new Fruit(fruitMeta.value, fruitMeta.color, {x, y})
@@ -39,7 +40,10 @@ export class FruitManager {
     }
 
     private isPositionValid(position: GamePosition): boolean {
-        return this.snake.getCurrentPosition().includes(position)
+        const isOnSnake = this.snake.getHeadPosition() === position;
+        const isOnSnakeBody = !this.snake.getCurrentPosition().includes(position);
+
+        return isOnSnake && isOnSnakeBody;
     }
 
 }
