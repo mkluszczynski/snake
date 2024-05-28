@@ -1,19 +1,25 @@
 {
-  "name": "snake",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
+  "name": "@mkluszczynski/snake",
+  "version": "0.0.11",
+  "description": "Snake game in terminal",
+  "main": "dist/bin.js",
+  "bin": {
+    "snake": "dist/bin.js"
+  },
   "scripts": {
     "play": "node dist/bin.js",
     "start": "tsc && node ./build/main",
     "dev": "ts-node src/main",
     "build": "rollup --config rollup.config.js --configPlugin typescript --compact --silent && chmod +x dist/bin.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "npm:publish": "npm run build && npm publish --access public"
+
   },
   "keywords": [],
-  "author": "",
+  "author": "Mateusz Kluszczyński",
   "license": "ISC",
+  "homepage": "https://github.com/mkluszczynski/snake-ts",
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
