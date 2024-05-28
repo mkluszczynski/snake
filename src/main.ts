@@ -40,7 +40,7 @@ async function main() {
     if (gameManager.shouldGameOver()) break;
 
     gameRenderer.render();
-    await sleep(FRAME_TIME);
+    await sleep(FRAME_TIME - scoreManager.score * 2);
 
     snake.move();
   }
