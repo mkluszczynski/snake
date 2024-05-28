@@ -1,3 +1,4 @@
+---- beta ----
 game over screen - done
 game over on out of the map - done
 add personal height score - done
@@ -5,3 +6,8 @@ add current score to while playing - done
 snake should get faster after every score - done
 refactor directionQueue - done
 fix spawning fruit on snake bug - done
+
+---- 1.0.0 ----
+Add command system
+Add login system
+Add leaderboard service
