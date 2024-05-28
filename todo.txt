@@ -2,6 +2,6 @@ game over screen - done
 game over on out of the map - done
 add personal height score - done
 add current score to while playing - done
-snake should get faster after every score
+snake should get faster after every score - done
 refactor directionQueue
 fix spawning fruit on snake bug
