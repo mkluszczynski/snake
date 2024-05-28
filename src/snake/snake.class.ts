@@ -1,7 +1,7 @@
-import {SnakeDirection} from "./types/snakeDirection.type";
-import {SnakeBody} from "./snakeBody.class";
-import {SnakeDirectionQueue} from "./snakeDirectionQueue.class";
-import {GamePosition} from "../game/types/gamePosition.type";
+import { SnakeDirection } from "./types/snakeDirection.type";
+import { SnakeBody } from "./snakeBody.class";
+import { SnakeDirectionQueue } from "./snakeDirectionQueue.class";
+import { GamePosition } from "../game/types/gamePosition.type";
 import chalk from "chalk";
 
 export class Snake {

@@ -1,7 +1,7 @@
-import {FruitManager} from "../fruit/fruitManager.class";
-import {Snake} from "./snake.class";
-import {GameManager} from "../game/gameManager.class";
-import {GameRenderer} from "../game/gameRenderer.class";
+import { FruitManager } from "../fruit/fruitManager.class";
+import { Snake } from "./snake.class";
+import { GameManager } from "../game/gameManager.class";
+import { GameRenderer } from "../game/gameRenderer.class";
 
 export class SnakeCollision {
   constructor(

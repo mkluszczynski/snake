@@ -1,12 +1,11 @@
-import {SnakeDirection} from "./types/snakeDirection.type";
+import { SnakeDirection } from "./types/snakeDirection.type";
 
 export class SnakeDirectionQueue {
-
   private shouldChangeDirection = true;
 
   constructor(private snakeDirection: SnakeDirection) {}
 
-  getDirection(): SnakeDirection{
+  getDirection(): SnakeDirection {
     return this.snakeDirection;
   }
 

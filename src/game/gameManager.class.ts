@@ -1,6 +1,6 @@
-import {FruitManager} from "../fruit/fruitManager.class";
-import {Snake} from "../snake/snake.class";
-import {ScoreManager} from "../score/scoreManager.class";
+import { FruitManager } from "../fruit/fruitManager.class";
+import { Snake } from "../snake/snake.class";
+import { ScoreManager } from "../score/scoreManager.class";
 
 export class GameManager {
   isGameOver: boolean = false;
@@ -8,7 +8,7 @@ export class GameManager {
   constructor(
     private readonly snake: Snake,
     private readonly fruitManager: FruitManager,
-    private readonly scoreManager: ScoreManager
+    private readonly scoreManager: ScoreManager,
   ) {}
 
   addScore(): void {

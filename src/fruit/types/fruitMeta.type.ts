@@ -1,4 +1,4 @@
 export type FruitMeta = {
-    value: number,
-    color: string
-}
+  value: number;
+  color: string;
+};
