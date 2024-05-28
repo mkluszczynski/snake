@@ -7,7 +7,7 @@
     "play": "node dist/bin.js",
     "start": "tsc && node ./build/main",
     "dev": "ts-node src/main",
-    "build": "rollup --config rollup.config.js --configPlugin typescript --compact",
+    "build": "rollup --config rollup.config.js --configPlugin typescript --compact --silent && chmod +x dist/bin.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write ."
   },

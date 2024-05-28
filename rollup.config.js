@@ -7,6 +7,7 @@ export default {
     file: "dist/bin.js",
     format: "cjs",
     plugins: [terser()],
+    banner: "#!/usr/bin/env node",
   },
-  plugins: [typescript()],
+  plugins: [typescript({ compilerOptions: { module: "esnext" } })],
 };
