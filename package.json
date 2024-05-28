@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsc && node ./build/main",
     "dev": "ts-node src/main",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
