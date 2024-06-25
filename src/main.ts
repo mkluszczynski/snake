@@ -10,6 +10,8 @@ import { FRAME_TIME, WINDOW_HEIGHT, WINDOW_WIDTH } from "./utils/consts";
 import { ScoreManager } from "./score/scoreManager.class";
 import * as process from "process";
 import { printGameOver } from "./utils/ascii";
+import { CommandService } from "./commands/commandService.class";
+import { helpCommand } from "./commands/functions/help.command";
 
 const snakeDirectionQueue = new SnakeDirectionQueue({ x: 1, y: 0 });
 const snake = new Snake(snakeDirectionQueue, { x: 0, y: 0 }, { x: 1, y: 0 });
@@ -34,7 +36,22 @@ const collisionManager = new SnakeCollision(
   gameRenderer,
 );
 
+const commandService = new CommandService();
+commandService.addCommand({name: 'help', exec: helpCommand});
+commandService.addCommand({name: 'leaderboard', exec: () => console.log('leaderboard')});
+commandService.addCommand({name: 'login', exec: () => console.log('login')});
+commandService.addCommand({name: 'register', exec: () => console.log('register')});
+commandService.addCommand({name: 'import', exec: () => console.log('import')});
+commandService.addCommand({name: 'logout', exec: () => console.log('logout')});
+
+
 async function main() {
+  if(process.argv.length > 2){
+    const commandName = process.argv[2]
+    commandService.execCommand(commandName)
+    process.exit()
+  }
+
   inputManager.read();
   while (!gameManager.shouldGameOver()) {
     collisionManager.checkCollision();
