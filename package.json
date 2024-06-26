@@ -14,7 +14,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write .",
     "npm:publish": "npm run build && npm publish --access public"
-
   },
   "keywords": [],
   "author": "Mateusz Kluszczyński",
@@ -30,6 +29,8 @@
   },
   "dependencies": {
     "@types/node": "^20.11.19",
-    "chalk": "4.1.2"
+    "axios": "^1.7.2",
+    "chalk": "4.1.2",
+    "enquirer": "^2.4.1"
   }
 }

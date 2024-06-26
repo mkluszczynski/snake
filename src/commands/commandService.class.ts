@@ -1,24 +1,23 @@
 import { Command } from "./types/command.type";
 
-export class CommandService{
-  commands: Command[]
+export class CommandService {
+  commands: Command[];
 
-  constructor(){
-    this.commands = []
+  constructor() {
+    this.commands = [];
   }
 
-  public addCommand(command: Command){
-    this.commands.push(command)
+  public addCommand(command: Command) {
+    this.commands.push(command);
   }
 
-  public execCommand(name: string){
-    const command = this.commands.find(command => command.name === name)
+  public async execCommand(name: string) {
+    const command = this.commands.find((command) => command.name === name);
 
-    if(command){
-      command.exec()
+    if (command) {
+      await command.exec();
     } else {
-      console.log(`Command ${name} not found`)
+      console.log(`Command ${name} not found`);
     }
   }
-
 }

@@ -1,5 +1,8 @@
 export function helpCommand() {
-    console.log(`
+  return {
+    name: "help",
+    exec: () => {
+      console.log(`
   Controls: 
   - Use arrow keys to move the snake
   - Press 'q' to quit the game
@@ -12,4 +15,6 @@ export function helpCommand() {
   - logout: Logout from leaderboard
   - help: Show this message
   `);
+    },
+  };
 }

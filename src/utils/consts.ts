@@ -11,3 +11,12 @@ export const SAVE_PATH: string = path.join(
   SAVE_DIR,
   SAVE_FILE,
 );
+
+export const API_URL: string = "https://snake-leaderboard.mkluszczynski.dev";
+export const TOKEN_FILE: string = "token.save";
+export const TOKEN_PATH: string = path.join(
+  __dirname,
+  "..",
+  SAVE_DIR,
+  TOKEN_FILE,
+);

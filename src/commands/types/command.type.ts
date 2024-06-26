@@ -1,4 +1,4 @@
 export type Command = {
-  name: string,
-  exec: () => void
-}
+  name: string;
+  exec: () => void | Promise<void>;
+};
