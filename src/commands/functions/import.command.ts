@@ -6,7 +6,7 @@ export function importCommand(
   leaderboardService: LeaderboardService,
 ) {
   return {
-    name: "import",
+    name: "export",
     exec: async () => {
       const localScore = scoreManager.getSavedScore();
 

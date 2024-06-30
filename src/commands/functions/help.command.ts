@@ -11,7 +11,7 @@ export function helpCommand() {
   - leaderboard: Show the leaderboard
   - login: Login to leaderboard 
   - register: Register new account to leaderboard 
-  - import: Import your score saved on leaderboard
+  - export: Import your score saved on leaderboard
   - logout: Logout from leaderboard
   - help: Show this message
   `);
