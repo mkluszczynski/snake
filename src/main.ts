@@ -16,6 +16,8 @@ import { TokenManager } from "./auth/tokenManager.class";
 import { AuthService } from "./auth/authService.class";
 import { registerCommand } from "./commands/functions/register.command";
 import { loginCommand } from "./commands/functions/login.command";
+import { leaderboardCommand } from "./commands/functions/leaderboard.command";
+import { LeaderboardService } from "./leaderboard/leaderboardService.class";
 
 const snakeDirectionQueue = new SnakeDirectionQueue({ x: 1, y: 0 });
 const snake = new Snake(snakeDirectionQueue, { x: 0, y: 0 }, { x: 1, y: 0 });
@@ -43,12 +45,12 @@ const collisionManager = new SnakeCollision(
 const commandService = new CommandService();
 const tokenManager = new TokenManager();
 const authService = new AuthService(tokenManager);
+const leaderboardService = new LeaderboardService(tokenManager);
 
 commandService.addCommand(helpCommand());
-commandService.addCommand({
-  name: "leaderboard",
-  exec: () => console.log("leaderboard"),
-});
+commandService.addCommand(
+  leaderboardCommand(authService, leaderboardService, tokenManager),
+);
 commandService.addCommand(loginCommand(authService));
 commandService.addCommand(registerCommand(authService));
 commandService.addCommand({

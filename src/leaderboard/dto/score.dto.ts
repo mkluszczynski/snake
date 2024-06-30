@@ -1,6 +1,9 @@
 export type Score = {
-  id: string;
-  userId: string;
+  id: number;
+  user: {
+    id: number;
+    username: string;
+  };
   value: number;
   date: string;
 };

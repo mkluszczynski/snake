@@ -52,4 +52,26 @@ export class AuthService {
     this.tokenManager.deleteToken();
     console.log("Logout success");
   }
+
+  async getLoggedUserData() {
+    if (!this.tokenManager.doesTokenExist()) {
+      console.log("Not logged in");
+      return;
+    }
+
+    const res = await axios.get<{ id: number; username: string }>(
+      `${API_URL}/auth/me`,
+      {
+        validateStatus: () => true,
+        headers: { Authorization: `Bearer ${this.tokenManager.getToken()}` },
+      },
+    );
+
+    if (res.status !== 200) {
+      console.log("Failed to get user data");
+      return;
+    }
+
+    return res.data;
+  }
 }
