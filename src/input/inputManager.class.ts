@@ -30,6 +30,8 @@ export class InputManager {
           this.snakeDirectionQueue.handleDown();
           break;
         case "q":
+          console.clear();
+          console.log("Bye bye!");
           process.exit(0);
       }
     });
