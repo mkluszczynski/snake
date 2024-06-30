@@ -10,6 +10,16 @@ import { FRAME_TIME, WINDOW_HEIGHT, WINDOW_WIDTH } from "./utils/consts";
 import { ScoreManager } from "./score/scoreManager.class";
 import * as process from "process";
 import { printGameOver } from "./utils/ascii";
+import { CommandService } from "./commands/commandService.class";
+import { helpCommand } from "./commands/functions/help.command";
+import { TokenManager } from "./auth/tokenManager.class";
+import { AuthService } from "./auth/authService.class";
+import { registerCommand } from "./commands/functions/register.command";
+import { loginCommand } from "./commands/functions/login.command";
+import { leaderboardCommand } from "./commands/functions/leaderboard.command";
+import { LeaderboardService } from "./leaderboard/leaderboardService.class";
+import { importCommand } from "./commands/functions/import.command";
+import { logoutCommand } from "./commands/functions/logout.command";
 
 const snakeDirectionQueue = new SnakeDirectionQueue({ x: 1, y: 0 });
 const snake = new Snake(snakeDirectionQueue, { x: 0, y: 0 }, { x: 1, y: 0 });
@@ -34,7 +44,27 @@ const collisionManager = new SnakeCollision(
   gameRenderer,
 );
 
+const commandService = new CommandService();
+const tokenManager = new TokenManager();
+const authService = new AuthService(tokenManager);
+const leaderboardService = new LeaderboardService(tokenManager);
+
+commandService.addCommand(helpCommand());
+commandService.addCommand(
+  leaderboardCommand(authService, leaderboardService, tokenManager),
+);
+commandService.addCommand(loginCommand(authService));
+commandService.addCommand(registerCommand(authService));
+commandService.addCommand(importCommand(scoreManager, leaderboardService));
+commandService.addCommand(logoutCommand(authService));
+
 async function main() {
+  if (process.argv.length > 2) {
+    const commandName = process.argv[2];
+    await commandService.execCommand(commandName);
+    process.exit();
+  }
+
   inputManager.read();
   while (!gameManager.shouldGameOver()) {
     collisionManager.checkCollision();
@@ -46,10 +76,16 @@ async function main() {
     snake.move();
   }
   console.clear();
-  if (scoreManager.shouldSave()) scoreManager.saveScore();
+  if (scoreManager.shouldSave()) {
+    scoreManager.saveScore();
+    
+    if (tokenManager.doesTokenExist())
+      await importCommand(scoreManager, leaderboardService).exec();
+  }
   printGameOver();
   console.log("Highest score: ", scoreManager.getSavedScore());
   console.log("Your Score: ", scoreManager.score);
   process.exit();
 }
+
 main();
