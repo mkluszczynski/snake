@@ -40,4 +40,23 @@ export class LeaderboardService {
 
     return res.data;
   }
+
+  public async saveScore(score: number): Promise<void> {
+    const res = await axios.post(
+      `${API_URL}/scores`,
+      { value: score },
+      {
+        validateStatus: () => true,
+        headers: {
+          Authorization: `Bearer ${this.tokenManager.getToken()}`,
+        },
+      },
+    );
+
+    if (res.status !== 201) {
+      console.log("Failed to save score: ", res.data);
+      return;
+    }
+    console.log("Score saved!");
+  }
 }

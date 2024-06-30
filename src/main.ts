@@ -18,6 +18,7 @@ import { registerCommand } from "./commands/functions/register.command";
 import { loginCommand } from "./commands/functions/login.command";
 import { leaderboardCommand } from "./commands/functions/leaderboard.command";
 import { LeaderboardService } from "./leaderboard/leaderboardService.class";
+import { importCommand } from "./commands/functions/import.command";
 
 const snakeDirectionQueue = new SnakeDirectionQueue({ x: 1, y: 0 });
 const snake = new Snake(snakeDirectionQueue, { x: 0, y: 0 }, { x: 1, y: 0 });
@@ -53,10 +54,7 @@ commandService.addCommand(
 );
 commandService.addCommand(loginCommand(authService));
 commandService.addCommand(registerCommand(authService));
-commandService.addCommand({
-  name: "import",
-  exec: () => console.log("import"),
-});
+commandService.addCommand(importCommand(scoreManager, leaderboardService));
 commandService.addCommand({
   name: "logout",
   exec: () => console.log("logout"),
@@ -80,7 +78,10 @@ async function main() {
     snake.move();
   }
   console.clear();
-  if (scoreManager.shouldSave()) scoreManager.saveScore();
+  if (scoreManager.shouldSave()) {
+    scoreManager.saveScore();
+    await importCommand(scoreManager, leaderboardService).exec();
+  }
   printGameOver();
   console.log("Highest score: ", scoreManager.getSavedScore());
   console.log("Your Score: ", scoreManager.score);
