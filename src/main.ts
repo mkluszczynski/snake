@@ -78,7 +78,9 @@ async function main() {
   console.clear();
   if (scoreManager.shouldSave()) {
     scoreManager.saveScore();
-    await importCommand(scoreManager, leaderboardService).exec();
+    
+    if (tokenManager.doesTokenExist())
+      await importCommand(scoreManager, leaderboardService).exec();
   }
   printGameOver();
   console.log("Highest score: ", scoreManager.getSavedScore());
