@@ -1,9 +1,9 @@
 import { AuthService } from "../../auth/authService.class";
 import { prompt } from "enquirer";
 
-export function registerCommand(authService: AuthService) {
+export function loginCommand(authService: AuthService) {
   return {
-    name: "register",
+    name: "login",
     exec: async () => {
       const credentials: { username: string; password: string } = await prompt([
         {
@@ -19,14 +19,7 @@ export function registerCommand(authService: AuthService) {
       ]);
 
       if (credentials.username && credentials.password) {
-        try {
-          await authService.register(
-            credentials.username,
-            credentials.password,
-          );
-        } catch (e) {
-          console.log("Error registering user", e);
-        }
+        await authService.login(credentials.username, credentials.password);
       } else {
         console.log("Invalid username or password");
       }

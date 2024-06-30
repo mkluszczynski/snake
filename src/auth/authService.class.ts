@@ -7,24 +7,35 @@ export class AuthService {
   constructor(private readonly tokenManager: TokenManager) {}
 
   public async register(username: string, password: string) {
-    const res = await axios.post(`${API_URL}/users`, {
-      username,
-      password,
-    });
+    const res = await axios.post(
+      `${API_URL}/users`,
+      {
+        username,
+        password,
+      },
+      { validateStatus: () => true },
+    );
 
     if (res.status === 201) {
       console.log("Register success");
     }
+    if (res.status === 400) {
+      console.log("Username already exists");
+    }
   }
 
   public async login(username: string, password: string) {
-    const res = await axios.post<apiKeyDto>(`${API_URL}/auth/login`, {
-      username,
-      password,
-    });
+    const res = await axios.post<apiKeyDto>(
+      `${API_URL}/auth/login`,
+      {
+        username,
+        password,
+      },
+      { validateStatus: () => true },
+    );
 
-    if (res.status !== 200) {
-      console.log("Login failed: ", res.data);
+    if (res.status !== 201) {
+      console.log("Login failed!");
       return;
     }
 

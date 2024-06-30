@@ -15,6 +15,7 @@ import { helpCommand } from "./commands/functions/help.command";
 import { TokenManager } from "./auth/tokenManager.class";
 import { AuthService } from "./auth/authService.class";
 import { registerCommand } from "./commands/functions/register.command";
+import { loginCommand } from "./commands/functions/login.command";
 
 const snakeDirectionQueue = new SnakeDirectionQueue({ x: 1, y: 0 });
 const snake = new Snake(snakeDirectionQueue, { x: 0, y: 0 }, { x: 1, y: 0 });
@@ -48,7 +49,7 @@ commandService.addCommand({
   name: "leaderboard",
   exec: () => console.log("leaderboard"),
 });
-commandService.addCommand({ name: "login", exec: () => console.log("login") });
+commandService.addCommand(loginCommand(authService));
 commandService.addCommand(registerCommand(authService));
 commandService.addCommand({
   name: "import",

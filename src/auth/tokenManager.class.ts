@@ -1,9 +1,9 @@
 import fs from "fs";
-import { SAVE_PATH } from "../utils/consts";
+import { TOKEN_PATH } from "../utils/consts";
 
 export class TokenManager {
   saveToken(token: string): void {
-    fs.writeFileSync(SAVE_PATH, token);
+    fs.writeFileSync(TOKEN_PATH, token);
   }
 
   getToken(): string | null {
@@ -11,7 +11,7 @@ export class TokenManager {
 
     let savedToken: string = "";
     try {
-      savedToken = fs.readFileSync(SAVE_PATH, { encoding: "utf-8" });
+      savedToken = fs.readFileSync(TOKEN_PATH, { encoding: "utf-8" });
     } catch (err) {
       console.error("Error while reading token file...", err);
     }
@@ -19,10 +19,10 @@ export class TokenManager {
   }
 
   deleteToken(): void {
-    fs.unlinkSync(SAVE_PATH);
+    fs.unlinkSync(TOKEN_PATH);
   }
 
   doesTokenExist(): boolean {
-    return fs.existsSync(SAVE_PATH);
+    return fs.existsSync(TOKEN_PATH);
   }
 }
